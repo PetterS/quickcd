@@ -33,10 +33,14 @@ int main(int nargs, char* args[]) {
 	    "COMMIT;",
 	    args[2],
 	    args[2]);
-	char* err;
+	char* err = nullptr;
 	int result = sqlite3_exec(db.db, sql, nullptr, nullptr, &err);
+	sqlite3_free(sql);
 	if (result != 0) {
-		cerr << err << endl;
+		if (err != nullptr) {
+			cerr << err << endl;
+			sqlite3_free(err);
+		}
 		return 3;
 	}
 	return 0;

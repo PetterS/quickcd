@@ -17,5 +17,5 @@ Collects statistics of which directories you use and introduces a command (e.g. 
    ```
 1. Create an alias for switching directories; in bash:
    ```
-   alias qcd="cd \$(python3 /path/to/quickcd-get.py ~/.quickcd.sqlite3)"
+   alias qcd='cd "$(python3 /path/to/quickcd-get.py ~/.quickcd.sqlite3)"'
    ```

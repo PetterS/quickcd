@@ -1,0 +1,3 @@
+*.o
+*.code-workspace
+quickcd-store
