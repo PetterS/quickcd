@@ -18,3 +18,7 @@ format:
 
 clean:
 	rm -rf **/*.o
+
+
+# ln -s $(pwd)/quickcd-store ~/bin/quickcd-store
+# ln -s $(pwd)/quickcd-get.py ~/bin/quickcd-get.py
