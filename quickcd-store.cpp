@@ -33,8 +33,8 @@ int main(int nargs, char* args[]) {
 	char* sql = sqlite3_mprintf(
 	    "CREATE TABLE IF NOT EXISTS dirs (name text PRIMARY KEY NOT NULL, count integer NOT NULL);"
 	    "BEGIN;"
-	    "    INSERT INTO dirs (name, count) VALUES (\"%w\", 0) ON CONFLICT DO NOTHING;"
-	    "    UPDATE dirs SET count = count + 1 WHERE name = \"%w\";"
+	    "    INSERT INTO dirs (name, count) VALUES (%Q, 0) ON CONFLICT DO NOTHING;"
+	    "    UPDATE dirs SET count = count + 1 WHERE name = %Q;"
 	    "COMMIT;",
 	    args[2],
 	    args[2]);
@@ -59,8 +59,8 @@ int main(int nargs, char* args[]) {
 		    "                                     time real"
 		    ");"
 		    "BEGIN;"
-		    "INSERT INTO commands (command, directory, return_value, time) VALUES (\"%w\", \"%w\", "
-		    "\"%w\", \"%w\");"
+		    "INSERT INTO commands (command, directory, return_value, time) VALUES (%Q, %Q, "
+		    "%Q, %Q);"
 		    "COMMIT;",
 		    args[3],
 		    args[2],
