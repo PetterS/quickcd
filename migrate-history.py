@@ -11,14 +11,16 @@ def main(file):
 
     data = open(file, "r").readlines()
     pattern = re.compile(
-        r"^(?P<year>\d\d\d\d)-(?P<month>\d\d)-(?P<day>\d\d) (?P<hour>\d\d):(?P<min>\d\d):(?P<sec>\d\d) CET \w+ "
-        r"(?P<path>[a-zA-Z0-9/\-\.]+) (?P<elapsed>\d+)s (?P<ret>\d+) → (?P<cmd>.*)"
+        r"^(?P<year>\d\d\d\d)-(?P<month>\d\d)-(?P<day>\d\d) (?P<hour>\d\d):(?P<min>\d\d):(?P<sec>\d\d) CES?T [A-Za-zåö]+ "
+        r"(?P<path>/[a-zA-Z0-9åäöÅÄÖ/\-\. _]*) (?P<elapsed>\d+)s (?P<ret>\d+) → (?P<cmd>.*)"
         + "\n$"
     )
     rows = []
     for r in data:
         m = pattern.match(r)
-        assert m
+        if not m:
+            print(r)
+            sys.exit(1)
 
         dt = datetime.datetime(
             int(m.group("year")),
