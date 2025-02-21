@@ -1,3 +1,4 @@
 *.o
+*.d
 *.code-workspace
 quickcd-store
